@@ -3,6 +3,12 @@
 │   ├── celery.py
 │   ├── __init__.py
 │   ├── middleware.py
+│   ├── models
+│   │   ├── affiliate_models.py
+│   │   ├── blog_models.py
+│   │   ├── generation_models.py
+│   │   ├── home_models.py
+│   │   └── __init__.py
 │   ├── __pycache__
 │   │   ├── celery.cpython-312.pyc
 │   │   ├── __init__.cpython-312.pyc
@@ -23,69 +29,38 @@
 │   │   │   ├── autoblog.css
 │   │   │   ├── normalize.css
 │   │   │   └── normalize.css.map
+│   │   ├── home
+│   │   │   └── css
+│   │   │       └── welcome_page.css
 │   │   ├── js
 │   │   │   └── autoblog.js
 │   │   └── scss
 │   │       └── normalize.scss
+│   ├── tasks
+│   │   ├── generation_tasks.py
+│   │   └── __init__.py
 │   ├── templates
 │   │   ├── 404.html
 │   │   ├── 500.html
+│   │   ├── autoblog
+│   │   │   ├── home_page.html
+│   │   │   └── welcome_page.html
 │   │   └── base.html
 │   ├── urls.py
+│   ├── views
+│   │   ├── affiliate_views.py
+│   │   └── __init__.py
+│   ├── wagtail_hooks
+│   │   ├── affiliate_hooks.py
+│   │   ├── generation_hooks.py
+│   │   └── __init__.py
 │   └── wsgi.py
-├── blog
-│   ├── admin.py
-│   ├── apps.py
-│   ├── __init__.py
-│   ├── migrations
-│   │   ├── 0001_initial.py
-│   │   ├── __init__.py
-│   │   └── __pycache__
-│   │       ├── 0001_initial.cpython-312.pyc
-│   │       ├── 0002_blogpage_affiliate_cta_affiliateclick.cpython-312.pyc
-│   │       ├── 0003_affiliate_keyword_generationstate_prompt.cpython-312.pyc
-│   │       └── __init__.cpython-312.pyc
-│   ├── models.py
-│   ├── __pycache__
-│   │   ├── admin.cpython-312.pyc
-│   │   ├── apps.cpython-312.pyc
-│   │   ├── __init__.cpython-312.pyc
-│   │   ├── models.cpython-312.pyc
-│   │   ├── tasks.cpython-312.pyc
-│   │   └── wagtail_hooks.cpython-312.pyc
-│   ├── tasks.py
-│   ├── tests.py
-│   ├── views.py
-│   └── wagtail_hooks.py
 ├── celerybeat-schedule
 ├── db.sqlite3
 ├── Dockerfile
 ├── .dockerignore
 ├── .gitattributes
 ├── .gitignore
-├── home
-│   ├── __init__.py
-│   ├── migrations
-│   │   ├── 0001_initial.py
-│   │   ├── 0002_create_homepage.py
-│   │   ├── 0003_homepage_body.py
-│   │   ├── __init__.py
-│   │   └── __pycache__
-│   │       ├── 0001_initial.cpython-312.pyc
-│   │       ├── 0002_create_homepage.cpython-312.pyc
-│   │       ├── 0003_homepage_body.cpython-312.pyc
-│   │       └── __init__.cpython-312.pyc
-│   ├── models.py
-│   ├── __pycache__
-│   │   ├── __init__.cpython-312.pyc
-│   │   └── models.cpython-312.pyc
-│   ├── static
-│   │   └── css
-│   │       └── welcome_page.css
-│   └── templates
-│       └── home
-│           ├── home_page.html
-│           └── welcome_page.html
 ├── manage.py
 ├── package.json
 ├── package-lock.json
@@ -103,4 +78,4 @@
 │   └── views.py
 └── tree.txt
 
-27 directories, 77 files
+22 directories, 57 files

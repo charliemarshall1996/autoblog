@@ -12,6 +12,8 @@ from django_celery_beat.models import (
     PeriodicTask,
 )
 
+from . import models
+
 
 class CrontabScheduleSnippet(SnippetViewSet):
     model = CrontabSchedule
@@ -83,8 +85,8 @@ class SchedulingSnippetGroup(SnippetViewSetGroup):
     menu_name = "scheduling"
 
 
-"""class GenerationStateSnippet(SnippetViewSet):
-    model = GenerationState
+class GenerationStateSnippet(SnippetViewSet):
+    model = models.GenerationState
     list_display = (
         "last_affiliate",
         "last_keyword"
@@ -93,14 +95,14 @@ class SchedulingSnippetGroup(SnippetViewSetGroup):
         FieldPanel("last_affiliate"),
         FieldPanel("last_keyword"),
     ]
-"""
 
-"""class SetupSnippetGroup(SnippetViewSetGroup):
+
+class SetupSnippetGroup(SnippetViewSetGroup):
     items = (GenerationStateSnippet)
     menu_icon = "cogs"
     menu_label = "Setup"
-    menu_name = "setup"""
+    menu_name = "setup"
 
 
 register_snippet(SchedulingSnippetGroup)
-"register_snippet(SetupSnippetGroup)"
+register_snippet(SetupSnippetGroup)

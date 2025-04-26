@@ -9,8 +9,8 @@ from django.conf import settings
 from transformers import pipeline, AutoTokenizer
 from transformers.generation import GenerationConfig
 
-from .models import BlogPage, BlogIndexPage
-from .wagtail_hooks import GenerationState, Affiliate
+from ..models.blog_models import BlogPage, BlogIndexPage
+from ..wagtail_hooks.generation_hooks import GenerationState, Affiliate
 
 logger = logging.getLogger(__name__)
 logger.setLevel(logging.DEBUG)  # Ensure debug messages are captured

@@ -50,7 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
-    "affiliates",
+    "affiliate",
     "celery",
     "django_celery_beat",
     "django_celery_results"

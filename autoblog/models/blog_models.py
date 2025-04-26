@@ -5,13 +5,10 @@ from modelcluster.fields import ParentalKey
 from modelcluster.contrib.taggit import ClusterTaggableManager
 from taggit.models import TaggedItemBase
 
-from wagtail.admin.panels import FieldPanel
-from wagtail.models import Page, Orderable
+from wagtail.models import Page
 from wagtail.fields import RichTextField
 from wagtail.admin.panels import MultiFieldPanel
 from wagtail.search import index
-
-from . import blocks
 
 
 class BlogPageTag(TaggedItemBase):
@@ -84,62 +81,3 @@ class BlogPage(Page):
         self.search_description = self.body[:160]
         self.slug = '-'.join(self.title.lower().split()[:4])
         self.save()
-
-
-class BlogPageGalleryImage(Orderable):
-    page = ParentalKey(BlogPage, on_delete=models.CASCADE,
-                       related_name='gallery_images')
-    image = models.ForeignKey(
-        'wagtailimages.Image', on_delete=models.CASCADE, related_name='+'
-    )
-    caption = models.CharField(blank=True, max_length=250)
-
-    panels = ["image", "caption"]
-
-
-class Prompt(Orderable):
-    SECTION_CHOICES = [
-        ("T", "Title"),
-        ("I", "Intro"),
-        ("B", "Body"),
-        ("C", "Conclusion"),
-        ("A", "Action")
-    ]
-    prompt_text = models.TextField()
-    section = models.CharField(max_length=1, choices=SECTION_CHOICES)
-
-    panels = [
-        FieldPanel('section'),
-        FieldPanel('prompt_text'),
-    ]
-
-    def __str__(self):
-        return f"{self.get_section_display()}: {self.prompt_text[:50]}..."
-
-
-class GenerationState(models.Model):
-    last_affiliate = models.ForeignKey(
-        'Affiliate',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='+'
-    )
-    last_keyword = models.ForeignKey(
-        'Keyword',
-        on_delete=models.SET_NULL,
-        null=True,
-        blank=True,
-        related_name='+'
-    )
-
-    def __str__(self):
-        return f"Last: {self.last_affiliate} / {self.last_keyword}"
-
-    class Meta:
-        verbose_name = "Generation State"
-        verbose_name_plural = "Generation State"
-
-    def save(self, *args, **kwargs):
-        self.pk = 1
-        super().save(*args, **kwargs)

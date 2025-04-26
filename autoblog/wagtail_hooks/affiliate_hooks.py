@@ -1,5 +1,5 @@
 
-from . import models
+from ...affiliate import models
 from wagtail.admin import panels
 from wagtail.snippets.views import snippets
 
