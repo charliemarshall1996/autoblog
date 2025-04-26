@@ -50,6 +50,7 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
 
+    "affiliates",
     "celery",
     "django_celery_beat",
     "django_celery_results"
@@ -205,42 +206,11 @@ CELERY_TIMEZONE = "Europe/London"  # Set to your timezone
 
 # Celery Beat Configuration
 CELERY_BEAT_SCHEDULER = "django_celery_beat.schedulers:DatabaseScheduler"
-"""CELERY_BEAT_SCHEDULE = {
-    "generate-daily-post": {
-        "task": "blog.tasks.generate_daily_blog_post",
-        "schedule": crontab(hour=0, minute="1"),  # Daily at 4 AM
-        "options": {
-            "expires": 3600,  # 1 hour expiration
-        },
-    },
-}"""
+
 
 # Hugging Face model settings (choose appropriate model for your niche)
 # Consider using facebook/bart-large-cnn or another suitable model
-AUTO_BLOG_MODEL_NAME = "gpt2"
-
-AFFILIATE_NAME = "Jasper.ai"
-
-AFFILIATE_KEYWORDS = [
-    "AI productivity tools",
-    "freelance automation",
-    "GPT-4 for client work",
-    "automating content creation",
-    "AI-powered time management",
-    "AI tools for solopreneurs",
-    "AI in creative freelancing",
-    "scaling with automation",
-    "AI for proposal writing",
-    "future-proofing freelancing"
-]
-
-AFFILIATE_PROMPT_TEMPLATE = """
-Title: {title}
-
-Write a blog introduction on the topic: "{keyword}". Include a hook, introduce the problem, and tease the solution.
-
-Then expand on the benefits of using AI tools in this context, especially for freelancers. Make it informative, clear, and friendly in tone.
-"""
+AUTO_BLOG_MODEL_NAME = "openai-community/gpt2"
 
 # Logging
 # Add to your settings.py

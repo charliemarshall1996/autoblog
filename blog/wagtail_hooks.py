@@ -2,7 +2,7 @@
 
 from wagtail.admin.panels import FieldPanel
 from wagtail.snippets.models import register_snippet
-from wagtail.snippets.views.snippets import SnippetViewSet
+from wagtail.snippets.views.snippets import SnippetViewSet, SnippetViewSetGroup
 
 from django_celery_beat.models import (
     CrontabSchedule,
@@ -11,10 +11,6 @@ from django_celery_beat.models import (
     SolarSchedule,
     PeriodicTask,
 )
-
-#
-# 1) Crontab schedules
-#
 
 
 class CrontabScheduleSnippet(SnippetViewSet):
@@ -30,14 +26,6 @@ class CrontabScheduleSnippet(SnippetViewSet):
     ]
 
 
-# tells Wagtail to include this under “Snippets” :contentReference[oaicite:1]{index=1}
-register_snippet(CrontabScheduleSnippet)
-
-#
-# 2) Interval schedules
-#
-
-
 class IntervalScheduleSnippet(SnippetViewSet):
     model = IntervalSchedule
     list_display = ("every", "period")
@@ -45,13 +33,6 @@ class IntervalScheduleSnippet(SnippetViewSet):
         FieldPanel("every"),
         FieldPanel("period"),
     ]
-
-
-register_snippet(IntervalScheduleSnippet)
-
-#
-# 3) Clocked schedules
-#
 
 
 class ClockedScheduleSnippet(SnippetViewSet):
@@ -62,13 +43,6 @@ class ClockedScheduleSnippet(SnippetViewSet):
     ]
 
 
-register_snippet(ClockedScheduleSnippet)
-
-#
-# 4) Solar schedules
-#
-
-
 class SolarScheduleSnippet(SnippetViewSet):
     model = SolarSchedule
     list_display = ("event", "latitude", "longitude")
@@ -77,13 +51,6 @@ class SolarScheduleSnippet(SnippetViewSet):
         FieldPanel("latitude"),
         FieldPanel("longitude"),
     ]
-
-
-register_snippet(SolarScheduleSnippet)
-
-#
-# 5) Periodic tasks
-#
 
 
 class PeriodicTaskSnippet(SnippetViewSet):
@@ -108,4 +75,32 @@ class PeriodicTaskSnippet(SnippetViewSet):
     ]
 
 
-register_snippet(PeriodicTaskSnippet)
+class SchedulingSnippetGroup(SnippetViewSetGroup):
+    items = (CrontabScheduleSnippet, IntervalScheduleSnippet,
+             ClockedScheduleSnippet, SolarScheduleSnippet, PeriodicTaskSnippet)
+    menu_icon = "calendar-check"
+    menu_label = "Scheduling"
+    menu_name = "scheduling"
+
+
+"""class GenerationStateSnippet(SnippetViewSet):
+    model = GenerationState
+    list_display = (
+        "last_affiliate",
+        "last_keyword"
+    )
+    panels = [
+        FieldPanel("last_affiliate"),
+        FieldPanel("last_keyword"),
+    ]
+"""
+
+"""class SetupSnippetGroup(SnippetViewSetGroup):
+    items = (GenerationStateSnippet)
+    menu_icon = "cogs"
+    menu_label = "Setup"
+    menu_name = "setup"""
+
+
+register_snippet(SchedulingSnippetGroup)
+"register_snippet(SetupSnippetGroup)"
