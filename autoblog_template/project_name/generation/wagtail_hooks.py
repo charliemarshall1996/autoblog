@@ -12,7 +12,7 @@ from django_celery_beat.models import (
     PeriodicTask,
 )
 
-from ..models import generation_models
+from ..project_name.models import generation_models
 
 
 class CrontabScheduleSnippet(SnippetViewSet):

@@ -1,13 +1,14 @@
-# autoblog/celery.py
+# {{ project_name }}/celery.py
 import os
 from celery import Celery
 
 
 # Set default django settings module
-os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'autoblog.settings.base')
+os.environ.setdefault('DJANGO_SETTINGS_MODULE',
+                      '{{ project_name }}.settings.base')
 
 
-app = Celery('autoblog')
+app = Celery('{{ project_name }}')
 
 app.config_from_object('django.conf:settings', namespace='CELERY')
 

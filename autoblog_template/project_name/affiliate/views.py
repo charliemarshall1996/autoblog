@@ -1,15 +1,15 @@
 from django.shortcuts import get_object_or_404, redirect
 from django.http import HttpRequest
-from ..models import affiliate_models
+from . import models
 
 
 def track_affiliate_click(request: HttpRequest):
     affiliate_id = request.GET.get('affiliate_id')
     product = request.GET.get('product')
 
-    affiliate = get_object_or_404(affiliate_models.Affiliate, id=affiliate_id)
+    affiliate = get_object_or_404(models.Affiliate, id=affiliate_id)
 
-    affiliate_models.AffiliateClick.objects.create(
+    models.AffiliateClick.objects.create(
         affiliate=affiliate,
         affiliate_product=product or "Unknown",
         ip_address=get_client_ip(request),

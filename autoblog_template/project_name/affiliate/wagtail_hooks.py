@@ -1,11 +1,11 @@
 
-from ..models import affiliate_models
+from . import models
 from wagtail.admin import panels
 from wagtail.snippets.views import snippets
 
 
 class AffiliateSnippet(snippets.SnippetViewSet):
-    model = affiliate_models.Affiliate
+    model = models.Affiliate
     menu_label = "Affiliates"
     menu_icon = "group"
     list_display = ("name", "description", "website_url", "affiliate_link")

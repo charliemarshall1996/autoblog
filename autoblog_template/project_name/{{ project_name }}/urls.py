@@ -8,15 +8,11 @@ from wagtail.documents import urls as wagtaildocs_urls
 
 from search import views as search_views
 
-from views import affiliate_views
-
 urlpatterns = [
     path("django-admin/", admin.site.urls),
     path("admin/", include(wagtailadmin_urls)),
     path("documents/", include(wagtaildocs_urls)),
-    path("search/", search_views.search, name="search"),
-    path("affiliate/click/", affiliate_views.track_affiliate_click,
-         name='affiliate_click'),
+    path("search/", search_views.search, name="search")
 ]
 
 
