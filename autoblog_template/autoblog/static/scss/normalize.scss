@@ -1,0 +1,55 @@
+
+@import "../../../node_modules/bootstrap/scss/_functions.scss";
+@import "../../../node_modules/bootstrap/scss/_variables.scss";
+
+$primary: #03071e;   
+$secondary: #15B097;
+$tertiary: #92140C;  
+$light: #D4DCFF;     
+$dark: #0F191A;
+$body: $light;
+
+// merge with existing $theme-colors map
+$theme-colors: map-merge($theme-colors, (
+  "primary": $primary,
+  "secondary": $secondary,
+  "tertiary": $tertiary,
+  "light": $light,
+  "dark": $dark,
+  "bg-body": $body,
+));
+
+$font-family-display: 'Source Code Pro', sans-serif;
+$font-family-lead: 'Inter', sans-serif;
+$font-family-base: 'Inter', sans-serif;
+
+$display-font-family: $font-family-display;
+$lead-font-family: $font-family-lead;
+$base-font-family: $font-family-base;
+
+// Override Bootstrap Accordion Button
+.accordion-button {
+  background-color: $light;
+  color: $secondary;
+  border-color: $dark;
+
+  &:hover {
+    background-color: darken($light, 10%); // Darken background on hover
+    border-color: darken($dark, 10%); // Darken border on hover
+  }
+
+  &:focus {
+    box-shadow: none; // Optional: remove focus shadow
+  }
+
+  &.collapsed {
+    background-color: lighten($light, 10%); // Lighter background when collapsed
+  }
+
+  &.active {
+    background-color: $secondary;
+    color: $light;
+  }
+}
+
+@import "../../../node_modules/bootstrap/scss/bootstrap.scss";
